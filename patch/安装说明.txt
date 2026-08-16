@@ -1,0 +1,22 @@
+WRC 9 遥测补丁 · 安装说明
+============================
+
+WRC 9 没有官方遥测接口，仪表盘的数据来自第三方补丁
+"WRC Telemetry Patch"（WRC 7/8/9/10 通用）。请按以下步骤安装：
+
+1. 注册并登录 RaceDepartment，下载 WRC Telemetry Patch：
+   https://www.racedepartment.com/downloads/wrc-telemetry-patch.38991/
+
+2. 按补丁自带说明解压到游戏目录，运行一次 InstallWrc10.bat 完成安装。
+
+3. 直接启动 WRC 9，再打开仪表盘即可——仪表盘直读补丁的原生共享内存
+   （与 SimHub 同源），不需要转发器，也没有端口/防火墙问题。
+
+4. 仪表盘左上角状态变为绿色「接收中 xx pkt/s ｜ 模式：共享内存直读」即成功。
+
+排障：一直「等待数据…」说明补丁没装好或游戏没启动——重装
+InstallWrc10.bat、确认 PhysXCooking64_s.dll 被游戏加载；也可命令行运行
+    python telemetry/wrc_shm.py
+无界面直读共享内存打印，确认补丁是否在喂数据。
+
+注意：本项目只读取补丁公布的公开接口，不分发补丁本体。

@@ -1,0 +1,37 @@
+name: build
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  pyinstaller:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
+      - name: Build single-file exe
+        run: python -m PyInstaller --onefile --noconsole --name wrc9-dashboard --paths . --clean --noconfirm dashboard/main.py
+
+      - name: Smoke test exe
+        run: .\dist\wrc9-dashboard.exe --self-test 5
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wrc9-dashboard
+          path: dist/wrc9-dashboard.exe
+
+      - name: Attach to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/wrc9-dashboard.exe

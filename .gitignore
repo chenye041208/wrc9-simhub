@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+
+# PyInstaller 构建产物
+build/
+dist/
+*.spec
+
+# 本地运行配置（窗口位置等个人偏好，不入库）
+config.json
+
+# 抓包输出（已废弃，防回归）
+captures/
