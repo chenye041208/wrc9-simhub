@@ -1,5 +1,8 @@
 # WRC 9 遥测仪表盘
 
+[![test](https://github.com/chenye041208/wrc9-simhub/actions/workflows/test.yml/badge.svg)](https://github.com/chenye041208/wrc9-simhub/actions/workflows/test.yml)
+[![release](https://img.shields.io/github/v/release/chenye041208/wrc9-simhub)](https://github.com/chenye041208/wrc9-simhub/releases/latest)
+
 WRC 9（PC）本地实时遥测仪表盘，专为 OBS 直播窗口采集设计。
 
 - **直读补丁共享内存**（与 SimHub 同源）：无转发器、无端口、无防火墙配置
