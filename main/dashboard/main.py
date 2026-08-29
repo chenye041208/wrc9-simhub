@@ -3,10 +3,10 @@
 dashboard/main.py — WRC 9 遥测仪表盘（独立桌面窗口版）
 
 一个零依赖（仅 Python 标准库 + tkinter）的本地桌面窗口：
-  * 直读补丁共享内存（telemetry.wrc_shm），无转发器、无端口配置；
+  * 直读补丁共享内存（reader.wrc_shm），无转发器、无端口配置；
   * 导播风格布局：顶部全宽 RPM 条、大字档位/车速、俯视图车辆（悬挂/轮速）、
     G-G 图、底部全宽转向条；
-  * 内置合成数据源（telemetry.synth）：S 键演示与 --self-test 自检，
+  * 内置合成数据源（reader.synth）：S 键演示与 --self-test 自检，
     不经过任何 socket；
   * 直播友好：窗口置顶、绿幕背景（OBS 色键，自动切换高对比配色）、
     一键隐藏工具栏、键盘快捷键。
@@ -33,14 +33,19 @@ if getattr(sys, "frozen", False):
     # PyInstaller 打包后：config.json 放在 exe 同目录
     PROJECT_ROOT = os.path.dirname(os.path.abspath(sys.executable))
 else:
-    # 源码运行：项目根目录 = 本文件（dashboard/main.py）的上一级
+    # 源码运行：包根 = 本文件（main/dashboard/main.py）所在的 main/
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if PROJECT_ROOT not in sys.path:
         sys.path.insert(0, PROJECT_ROOT)
 
-from telemetry import gamepad_reader, synth, wrc_shm
+from reader import gamepad_reader, synth, wrc_shm
 
-CONFIG_PATH = os.path.join(PROJECT_ROOT, "config.json")
+# config.json 等运行期文件放项目根目录（源码结构为 main/ 的上一层，
+# 与 docs/dist 等非源码内容同层）；打包后则放 exe 同目录
+CONFIG_PATH = os.path.join(
+    PROJECT_ROOT if getattr(sys, "frozen", False) else os.path.dirname(PROJECT_ROOT),
+    "config.json",
+)
 
 # ---------------- 主题配色 ----------------
 BG = "#0d1117"

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""telemetry/synth.py — 内置合成数据源（"脑补模式"）。
+"""reader/synth.py — 内置合成数据源（"脑补模式"）。
 
 不经过任何 socket：直接用数学曲线生成与 wrc_shm.to_dashboard_dict
 相同形状的数据字典，供仪表盘 S 键演示与 --self-test 自检使用。

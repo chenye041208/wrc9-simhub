@@ -4,7 +4,7 @@
 import struct
 import unittest
 
-from telemetry.wrc_shm import (STRUCT_FMT, STRUCT_SIZE, SUPPORTED_VERSION,
+from reader.wrc_shm import (STRUCT_FMT, STRUCT_SIZE, SUPPORTED_VERSION,
                                parse_frame, to_dashboard_dict)
 
 

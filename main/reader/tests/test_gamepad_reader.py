@@ -3,7 +3,7 @@
 
 import unittest
 
-from telemetry.gamepad_reader import DEFAULT_MAP, _norm_stick, _norm_trigger
+from reader.gamepad_reader import DEFAULT_MAP, _norm_stick, _norm_trigger
 
 
 class TestTriggerNorm(unittest.TestCase):

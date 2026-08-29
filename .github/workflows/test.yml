@@ -8,6 +8,9 @@ on:
 jobs:
   unittest:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: main
     steps:
       - uses: actions/checkout@v4
 
@@ -16,7 +19,9 @@ jobs:
           python-version: "3.12"
 
       - name: Run unit tests
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s reader/tests -v
+          python -m unittest discover -s dashboard/tests -v
 
       - name: Dashboard self-test (synth data, no game needed)
         run: python dashboard/main.py --self-test 6

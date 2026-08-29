@@ -11,6 +11,9 @@ permissions:
 jobs:
   pyinstaller:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: main
     steps:
       - uses: actions/checkout@v4
 
@@ -31,10 +34,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wrc9-dashboard
-          path: dist/wrc9-dashboard.exe
+          path: main/dist/wrc9-dashboard.exe
 
       - name: Attach to GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/wrc9-dashboard.exe
+          files: main/dist/wrc9-dashboard.exe
